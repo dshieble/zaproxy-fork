@@ -16,9 +16,17 @@ RUN apt-get update && apt-get install -q -y --fix-missing \
 WORKDIR /zap-src
 
 # Pull the ZAP repo and build ZAP with weekly add-ons
-RUN git clone --depth 1 https://github.com/zaproxy/zaproxy.git && \
+# RUN git clone --depth 1 https://github.com/zaproxy/zaproxy.git && \
+# 	cd zaproxy && \
+# 	ZAP_WEEKLY_ADDONS_NO_TEST=true ./gradlew :zap:prepareDistWeekly
+
+# Pull the repo that you have pushed local code to as the zaproxy repo
+RUN git clone --depth 1 https://github.com/dshieble/zaproxy-fork && \
+  mv zaproxy-fork zaproxy && \
 	cd zaproxy && \
 	ZAP_WEEKLY_ADDONS_NO_TEST=true ./gradlew :zap:prepareDistWeekly
+
+
 
 WORKDIR /zap
 
