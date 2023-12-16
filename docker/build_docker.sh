@@ -8,7 +8,7 @@ sudo ln -sf $HOME/.colima/default/docker.sock /var/run/docker.sock
 
 
 # Build and puah
-git add -A .; git commit -m "update"; git push; \
+git commit -a -m "update"; git push; \
   # docker build --platform=linux/arm64 -t  danshiebler/private:zap_local -f docker/Dockerfile-local .; \
   docker build --platform=linux/arm64 -t  danshiebler/private:zap_local -f Dockerfile-local .; \
   docker image push  danshiebler/private:zap_local
