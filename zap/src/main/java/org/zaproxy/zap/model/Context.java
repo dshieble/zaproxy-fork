@@ -48,7 +48,8 @@ import org.zaproxy.zap.extension.custompages.CustomPage;
 import org.zaproxy.zap.extension.custompages.ExtensionCustomPages;
 import org.zaproxy.zap.session.CookieBasedSessionManagementMethodType.CookieBasedSessionManagementMethod;
 import org.zaproxy.zap.session.SessionManagementMethod;
-
+import java.io.FileWriter;   // Import the FileWriter class
+import java.io.IOException;
 public class Context {
 
     public static final String CONTEXT_CONFIG = "context";
@@ -109,7 +110,20 @@ public class Context {
         this.authorizationDetectionMethod =
                 new BasicAuthorizationDetectionMethod(null, null, null, LogicalOperator.AND);
         this.urlParamParser.setContext(this);
-        this.postParamParser.setContext(this);
+        this.postParam Parser.setContext(this);
+
+
+        try {
+          FileWriter myWriter = new FileWriter("/zap/wrk/test_file");
+          myWriter.write("Context.java");
+          myWriter.close();
+          System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+          System.out.println("An error occurred.");
+          e.printStackTrace();
+        }
+
+
     }
 
     public boolean isIncludedInScope(SiteNode sn) {
